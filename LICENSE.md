@@ -1,17 +1,5 @@
 PROJECT LICENSE
 
-This project was submitted by Elliot Yu as part of the Nanodegree At Udacity.
-
-As agreed upon under the Udacity Honor code, your submissions must be your own work.  
-If you submit this project as your own work, you break the Udacity Honor Code and risk
-the suspension of your Udacity account.
-
-I, the author of the project, allow you to check the code only as a reference. 
-The author shall not be liable for any claim, damages, or other liability if you 
-present this project as your own work.
-
-Copyright (c) 2020 Elliot Yu
-
 
 The following license applies and this license notice
 shall be included in all works derived from this project.
@@ -19,7 +7,7 @@ shall be included in all works derived from this project.
 
 MIT License
 
-Copyright (c) 2020 Udacity
+Copyright (c) 2020 Elliot Yu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
