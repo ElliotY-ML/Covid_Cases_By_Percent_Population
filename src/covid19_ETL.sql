@@ -20,7 +20,7 @@ WITH
                 ROWS BETWEEN 13 PRECEDING AND CURRENT ROW
             ) AS sum_cases_last_14_days
         FROM
-            `coursera-analytics-class.covid_by_percent.cdc_covid_cases_Jan_13`
+            `coursera-analytics-class.covid_by_percent.cdc_covid_cases_Jan_13` --Change Dataset Date
         WHERE 
             state='NY'
         ORDER BY 
@@ -74,8 +74,8 @@ SELECT
     cs.*,
     rc.sum_cases_last_14_days,
     pop.Estimate__Total__Total_population AS state_pop,
-    cs.new_cases/pop.Estimate__Total__Total_population*100 AS new_cases_percent,
-    rc.sum_cases_last_14_days/pop.Estimate__Total__Total_population*100 AS cases_last_14_pop_percent 
+    cs.new_cases/pop.Estimate__Total__Total_population AS new_cases_percent,
+    rc.sum_cases_last_14_days/pop.Estimate__Total__Total_population AS cases_last_14_pop_percent 
 FROM 
     cases_by_state AS cs
 INNER JOIN 
