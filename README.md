@@ -1,28 +1,27 @@
 # Overview
-This repository contains codes, data, and calculated features for visualizing Covid-19 cases in the US.  
-The generated data is utilized in Tableau Public for creating dashboards with line graphs, bar charts, and heat maps of Covid-19 cases and deaths.
+This repository contains codes, data, and calculated features for visualizing recent COVID-19 cases in the US.  
+The generated data is utilized in Tableau Public for creating dashboards with line graphs, bar charts, and heat maps of COVID-19-19 cases and deaths.
 
-
-<html>
-<div class='tableauPlaceholder' id='viz1642715902376' style='position: relative'><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='views&#47;US_Covid19_Cases_Percent_Population&#47;MapDailyCasesPerPop?:language=en-US&amp;:embed=true&amp;publish=yes' /> <param name='toolbar' value='yes' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1642715902376');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-</html>
-
-
-
-
+![Tableau Dashboard](/img/CovidDashScreenShot.JPG)
+[Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 
 # Introduction  
   
-This project offers a different perspective than those seen on New York Times and U.S. CDC analysis by showing the percentage of state populations that have reported Covid-19 cases. 
-In the New York Times and CDC analysis, the quantity "Cases per million" is used for normalized comparison between states and regions. Though this is meaningful in statistics terms, it may not be immediately recognized by the general population, which is not well-versed in statistics.
-By using a basis of 100 rather than a basis of 1 million will present this data as a percentage, so that it is readily digestable.  
+This project presents a different aspect than those seen on New York Times and U.S. CDC analysis by analyzing totals of new Covid-19 cases reported in the past 14 days. 
+Estimates of the percentage of each state population that is currently infected with Covid-19 is calculated by normalizing the past 14 day new case totals to their respective state populations.  
+The data is presented as a percentage because it may be more intuitively digested by the general population, as opposed to using a basis of per million or per thousand.
+
+The author selected time intervals of 14-days based studies that show that an average period of COVID-19 infectiousness and risk of transmission is between 3 days before and 8 days after symptom onset, 
+and COVID-19 RNA usually becomes undetectable from upper respiratory tract samples about 2 weeks after symptom onset[1, 2, 3].
 
 
-<center><iframe src="https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/MapDailyCasesPerPop?:embed=y&:display_count=yes&:toolbar=no" width="1004" height="1269" frameborder="0"></iframe></center>
+[1]  https://www.cdc.gov/coronavirus/2019-ncov/your-health/quarantine-isolation.html  
+[2]  Peeling RW, Heymann DL, Teo Y, Garcia PJ. Diagnostics for COVID-19: moving from pandemic response to control. Lancet. Published online December 20, 2021: https://doi.org/10.1016/S0140-6736(21)02346-1  
+[3]  https://www.nytimes.com/interactive/2022/01/22/science/charting-omicron-infection.html
 
 
 # Data Sources
-
+Covid-19 case and death counts data are taken from CDC reports and calculations
 
 # Calculated Features
 
