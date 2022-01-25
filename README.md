@@ -3,7 +3,7 @@ This repository contains codes, data, and calculated features for visualizing re
 The transformed data is utilized in Tableau Public for creating dashboards with line graphs, bar charts, and heat maps of COVID-19 cases and deaths.
 
 ![Tableau Dashboard](/img/CovidDashScreenShot.JPG)
-[Link to Dashboard on Tableau Public](https://public.tableau.com/views/U.S._Covid19_Cases_Percent_Population/Dash14Day?:language=en-U.S.&publish=yes&:display_count=n&:origin=viz_share_link)
+[Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&:display_count=n&:origin=viz_share_link)
 
 # Introduction  
   

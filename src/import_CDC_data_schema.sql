@@ -53,12 +53,12 @@
 	{
 		"name": "new_death",
 		"type": "STRING",
-		"mode": "NULLABLE",
+		"mode": "NULLABLE"
 	},
 	{
 		"name": "pnew_death",
 		"type": "STRING",
-		"mode": "NULLABLE",
+		"mode": "NULLABLE"
 	},
 	{
 		"name": "created_at",
