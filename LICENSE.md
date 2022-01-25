@@ -1,13 +1,6 @@
-PROJECT LICENSE
-
-
-The following license applies and this license notice
-shall be included in all works derived from this project.
-
-
 MIT License
 
-Copyright (c) 2020 Elliot Yu
+Copyright (c) 2022 Elliot Yu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

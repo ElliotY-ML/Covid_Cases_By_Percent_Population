@@ -1,63 +1,83 @@
 # Overview
-This repository contains codes, data, and calculated features for visualizing recent COVID-19 cases in the US.  
-The generated data is utilized in Tableau Public for creating dashboards with line graphs, bar charts, and heat maps of COVID-19 cases and deaths.
+This repository contains codes, data, and calculated features for visualizing recent COVID-19 cases in the U.S.  
+The transformed data is utilized in Tableau Public for creating dashboards with line graphs, bar charts, and heat maps of COVID-19 cases and deaths.
 
 ![Tableau Dashboard](/img/CovidDashScreenShot.JPG)
-[Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
+[Link to Dashboard on Tableau Public](https://public.tableau.com/views/U.S._Covid19_Cases_Percent_Population/Dash14Day?:language=en-U.S.&publish=yes&:display_count=n&:origin=viz_share_link)
 
 # Introduction  
   
-This project presents a different aspect than those seen on New York Times and U.S. CDC analysis by analyzing totals of new Covid-19 cases reported in the past 14 days. 
-Estimates of the percentage of each state population that is currently infected with Covid-19 is calculated by normalizing the past 14 day new case totals to their respective state populations.  
+This project presents a different aspect than those seen on New York Times [1] and U.S. CDC analysis [2] by analyzing totals of new COVID-19 cases reported in the past 14 days.  
+
+Estimates of the percentage of each state population that is currently infected with COVID-19 is calculated by normalizing the past 14 day new case totals to their respective state populations. 
 The data is presented as a percentage because it may be more intuitively digested by the general population, as opposed to using a basis of per million or per 100,000 people.
 
-The author selected time intervals of 14-days based studies that show that an average period of COVID-19 infectiousness and risk of transmission is between 3 days before and 8 days after symptom onset, 
+The author selected time intervals of 14-days based on studies that show that an average period of COVID-19 infectiousness and risk of transmission is between 3 days before and 8 days after symptom onset, 
 and COVID-19 RNA usually becomes undetectable from upper respiratory tract samples about 2 weeks after symptom onset[1, 2, 3].
 
-
-[1]  https://www.cdc.gov/coronavirus/2019-ncov/your-health/quarantine-isolation.html  
-[2]  Peeling RW, Heymann DL, Teo Y, Garcia PJ. Diagnostics for COVID-19: moving from pandemic response to control. Lancet. Published online December 20, 2021: https://doi.org/10.1016/S0140-6736(21)02346-1  
-[3]  https://www.nytimes.com/interactive/2022/01/22/science/charting-omicron-infection.html
+[1]  https://www.nytimes.com/interactive/2021/us/covid-cases.html  
+[2]  https://covid.cdc.gov/covid-data-tracker/#datatracker-home  
+[3]  https://www.cdc.gov/coronavirus/2019-ncov/your-health/quarantine-isolation.html  
+[4]  Peeling RW, Heymann DL, Teo Y, Garcia PJ. Diagnostics for COVID-19: moving from pandemic response to control. Lancet. Published online December 20, 2021: https://doi.org/10.1016/S0140-6736(21)02346-1  
+[5]  https://www.nytimes.com/interactive/2022/01/22/science/charting-omicron-infection.html
 
 
 # Data Sources
 
-## CDC US Covid-19 Cases and Deaths By State  
-The CDC reports COVID-19 cases and death counts online at this [link](https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36).  
-The data is a collection of the most recent numbers reported by states, territories, and other jurisdictions.
+## CDC U.S. COVID-19 Cases and Deaths By State  
+U.S. CDC reports COVID-19 cases and death counts online at this [link](https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36).  
+The data is a collection of the most recent numbers reported by states, territories, and other jurisdictions to the CDC.
 
-Notes:  
--  The provided Total Cases includes total Confirmed Cases and total Probable Cases, as defined by CSTE [4]. Confirmed cases meet laboratory evidence, but Probable cases meet clinical criteria without laboratory evidence.  
--  Counts for New York City and New York State are shown separately.  This data must be recombined to analyze them as one New York State.
--  New York City does not include probable new cases to its Total Case count
+**Notes**:  
+-  This dataset includes Confirmed Cases and Probable Cases, as defined by CSTE [6]. Confirmed cases meet molecular laboratory testing evidence, while Probable cases meet clinical criteria without laboratory evidence.  Many jurisdictions include both their confirmed and probable cases ("pnew_case") into reported "Total Cases" and "New Case" counts.
+-  Counts for New York City and New York State are provided separately.  This data must be recombined to analyze them as one New York state.
 
 
-## US Census Data - 2019 American Community Survey 5-year Estimate 
-['2019 American Community Survey By State 5-Year Estimate'](https://api.census.gov/data/2019/acs/acs5?get=NAME,B01001_001E&for=state:*)  
-['2019 American Community Survey By State 1-Year Estimate']https://api.census.gov/data/2019/acs/acs1?get=NAME,B01001_001E&for=state:*
-https://www.census.gov/acs/www/data/data-tables-and-tools/narrative-profiles/2019/report.php?geotype=nation&usVal=us
-https://data.census.gov/cedsci/table?g=0100000US,%240400000&tid=ACSST5Y2019.S0101
+
+## U.S. Census Bureau - 2019 American Community Survey 5-year Estimate 
+The population of each state is obtained from the most recent U.S. Census Bureau American Community Survey 5-Year Estimate 2015-2019 [7].  Detailed descriptions about this data can be found through this [link](https://www.census.gov/acs/www/data/data-tables-and-tools/narrative-profiles/2019/report.php?geotype=nation&usVal=us)   
+ 
+This data can be viewed and exported interactively on the U.S. Census Bureau [website](https://data.census.gov/cedsci/table?g=0100000U.S.,%240400000&tid=ACSST5Y2019.S0101)  
+
+
 
 
 ## American National Standards Institute (ANSI) Codes for States
-https://www.census.gov/library/reference/code-lists/ansi/ansi-codes-for-states.html
+The conversion from state names to state abbreviations is needed to combine the U.S. CDC COVID-19 and the U.S. Census ACS datasets. 
+ 
+This information can be found on the U.S. Census Bureau reference library: https://www.census.gov/library/reference/code-lists/ansi/ansi-codes-for-states.html  
+Download the "National FIPS and GNIS Codes File" from the reference library.
 
-[4] https://ndc.services.cdc.gov/case-definitions/coronavirus-disease-2019-2021/
+
+[6]  https://ndc.services.cdc.gov/case-definitions/coronavirus-disease-2019-2021/  
+[7]  https://data.census.gov/cedsci/table?g=0100000U.S.&d=ACS%205-Year%20Estimates%20Subject%20Tables
+
 
 # Calculated Features
-
-new_cases = new_case+pnew_case
-new_deaths = new_death+pnew_case
-
+The following calculations are performed on the data:
+1.  `Daily New Cases as Percent of State Population = New Cases/State Population`
+2.  `Cases Last 14 Days = Sum(New Cases) Between Submit Date and Previous 13 Dates`
+3.  `Cases Last 14 Days as Percent of Statae Population = Cases Last 14 Days/State Population`
 
 
 # SQL
-
+All datasets were uploaded to Google Cloud Platform BigQuery for extracting, joining, and performing calculations.
+- `src/import_CDC_data_schema.sql` imports the CDC data as strings.  
+- `src/covid19_ETL.sql` joins the three datasets to create a table with calculated features appended to the original CDC data.
 
 
 # Tableau
+SQL output data is visualized with charts, heat maps, and dashboards on Tableau Public.
 
-## Refresh Data
+Direct link to author's Tableau Public Viz: https://public.tableau.com/app/profile/ellioty.ml/viz/U.S._Covid19_Cases_Percent_Population/Dash14Day
 
+### Refresh Data
+The Tableau Public Viz is manually updated with the latest CDC COVID-19 data with these following steps:
+1.  Download CDC U.S. COVID-19 Cases and Deaths By State  
+2.  Create a new table in the project SQL database.  Copy latest CDC U.S. COVID-19 data into this table
+3.  Run `covid19_ETL.sql` to prepare data for Tableau.  Save output as `datasets/Generated/US_MMM_DD.csv` where MMM is month as a string and DD is date of this update.
+4.  Replace existing Tableau visualization data source with `datasets/Generated/US_MMM_DD.csv`.
 
-# Further Improvements 
+# Future Improvements 
+- Add scripting to automate refresh of U.S. CDC COVID-19 data. 
+- Interactive analysis using Jupyter Notebook 
