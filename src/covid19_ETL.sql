@@ -36,7 +36,7 @@ WITH
         SELECT 
             CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
             state,
-            SUM(new_case+pnew_case) OVER(
+            SUM(new_case) OVER(
                 PARTITION BY state
                 ORDER BY CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') ASC
                 ROWS BETWEEN 13 PRECEDING AND CURRENT ROW
@@ -54,9 +54,9 @@ WITH
             CAST(REPLACE(cdc.submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
             state,
             SUM(cdc.tot_cases) AS total_cases,
-            SUM(cdc.new_case+cdc.pnew_case ) AS new_cases,
+            SUM(cdc.new_case) AS new_cases,
             SUM(cdc.tot_death) AS total_deaths,
-            SUM(cdc.new_death+cdc.pnew_death) AS new_deaths,
+            SUM(cdc.new_death) AS new_deaths,
         FROM
             data_cleaned as cdc 
         GROUP BY

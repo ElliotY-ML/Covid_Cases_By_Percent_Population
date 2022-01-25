@@ -29,6 +29,7 @@ The data is a collection of the most recent numbers reported by states, territor
 Notes:  
 -  The provided Total Cases includes total Confirmed Cases and total Probable Cases, as defined by CSTE [4]. Confirmed cases meet laboratory evidence, but Probable cases meet clinical criteria without laboratory evidence.  
 -  Counts for New York City and New York State are shown separately.  This data must be recombined to analyze them as one New York State.
+-  New York City does not include probable new cases to its Total Case count
 
 
 ## US Census Data - 2019 American Community Survey 5-year Estimate 
@@ -45,7 +46,8 @@ https://www.census.gov/library/reference/code-lists/ansi/ansi-codes-for-states.h
 
 # Calculated Features
 
-
+new_cases = new_case+pnew_case
+new_deaths = new_death+pnew_case
 
 
 
