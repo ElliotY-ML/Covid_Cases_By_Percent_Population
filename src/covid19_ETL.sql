@@ -10,54 +10,60 @@ Query was completed on Google Cloud Platform BigQuery.  The tables were named fo
 */
 
 WITH 
+    data_cleaned AS(
+        SELECT 
+            submission_date,
+            CASE
+                WHEN state='NYC' THEN 'NY'
+                ELSE state
+                END AS state,
+            SUM(CAST(REPLACE(tot_cases, ',','') AS INT64)) AS tot_cases,
+            SUM(CAST(REPLACE(conf_cases, ',','') AS INT64)) as conf_cases,
+            SUM(CAST(REPLACE(prob_cases, ',','') AS INT64)) as prob_cases,
+            SUM(CAST(REPLACE(new_case, ',','') AS INT64)) as new_case,
+            SUM(CAST(REPLACE(pnew_case, ',','') AS INT64)) as pnew_case,
+            SUM(CAST(REPLACE(tot_death, ',','') AS INT64)) as tot_death,
+            SUM(CAST(REPLACE(conf_death, ',','') AS INT64)) as conf_death,
+            SUM(CAST(REPLACE(prob_death, ',','') AS INT64)) as prob_death,
+            SUM(CAST(REPLACE(new_death, ',','') AS INT64)) AS new_death,
+            SUM(CAST(REPLACE(pnew_death, ',','') AS INT64)) AS pnew_death
+        FROM
+            `coursera-analytics-class.covid_by_percent.cdc_covid_cases_Jan_19`  --change dataset Date
+        GROUP BY 
+            state, submission_date
+    ),
     rolling_cases AS(
         SELECT 
             CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
             state,
-            SUM(CAST(REPLACE(new_case, ',','') AS INT64)) OVER(
-                PARTITION BY state 
+            SUM(CAST(new_case AS INT64)) OVER(
+                PARTITION BY state
                 ORDER BY CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') ASC
                 ROWS BETWEEN 13 PRECEDING AND CURRENT ROW
             ) AS sum_cases_last_14_days
         FROM
-            `coursera-analytics-class.covid_by_percent.cdc_covid_cases_Jan_13` --Change Dataset Date
-        WHERE 
-            state='NY'
+            data_cleaned
         ORDER BY 
             submit_date DESC
 ),
 
-/* SELECT *
-FROM rolling_cases */
-
--- Merge sum_cases_last_14_days into cases data.
+-- Merge sum_cases_last_14_days into other data.
 
     cases_by_state AS(
         SELECT 
             CAST(REPLACE(cdc.submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
-#           CAST(REPLACE(created_at, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS create_date,
-            cdc.state,
-            SUM(CAST(REPLACE(cdc.tot_cases, ',','') AS INT64)) total_cases,
-            SUM(CAST(REPLACE(cdc.new_case, ',','') AS INT64)) new_cases,
-            SUM(CAST(REPLACE(cdc.tot_death, ',','') AS INT64)) total_deaths,
-            SUM(CAST(REPLACE(cdc.new_death, ',','') AS INT64)) new_deaths,
-#           SUM(rc.tot_cases_last_14_days)
+            state,
+            SUM(CAST(cdc.tot_cases AS INT64)) total_cases,
+            SUM(CAST(cdc.new_case AS INT64)) new_cases,
+            SUM(CAST(cdc.tot_death AS INT64)) total_deaths,
+            SUM(CAST(cdc.new_death AS INT64)) new_deaths,
         FROM
-            `coursera-analytics-class.covid_by_percent.cdc_covid_cases_Jan_13` as cdc
-/*       LEFT JOIN 
-           rolling_cases as rc
-       ON 
-           submit_date=rc.submit_date AND cdc.state=rc.state */
-        WHERE 
-            cdc.state='NY'
+            data_cleaned as cdc
         GROUP BY
-            cdc.state, submit_date--, rc.submit_date, rc.state
+            state, submit_date--, rc.submit_date, rc.state
         ORDER BY 
             submit_date DESC
 ),
-
--- Merge State Abbreviations into Census data
-
     state_population AS(    
         SELECT 
             acs.*, abb.STUSAB as state_abb
@@ -68,7 +74,6 @@ FROM rolling_cases */
         ON acs.Geographic_Area_Name=abb.STATE_NAME 
 )
 
--- Query for Covid Case information and calculations
 
 SELECT 
     cs.*,
@@ -82,7 +87,7 @@ INNER JOIN
     rolling_cases AS rc
 ON 
     cs.submit_date=rc.submit_date AND cs.state=rc.state
-INNER JOIN 
+RIGHT JOIN 
     state_population AS pop
 ON 
     cs.state=pop.state_abb
