@@ -21,7 +21,27 @@ and COVID-19 RNA usually becomes undetectable from upper respiratory tract sampl
 
 
 # Data Sources
-Covid-19 case and death counts data are taken from CDC reports and calculations
+
+## CDC US Covid-19 Cases and Deaths By State  
+The CDC reports COVID-19 cases and death counts online at this [link](https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36).  
+The data is a collection of the most recent numbers reported by states, territories, and other jurisdictions.
+
+Notes:  
+-  The provided Total Cases includes total Confirmed Cases and total Probable Cases, as defined by CSTE [4]. Confirmed cases meet laboratory evidence, but Probable cases meet clinical criteria without laboratory evidence.  
+-  Counts for New York City and New York State are shown separately.  This data must be recombined to analyze them as one New York State.
+
+
+## US Census Data - 2019 American Community Survey 5-year Estimate 
+['2019 American Community Survey By State 5-Year Estimate'](https://api.census.gov/data/2019/acs/acs5?get=NAME,B01001_001E&for=state:*)  
+['2019 American Community Survey By State 1-Year Estimate']https://api.census.gov/data/2019/acs/acs1?get=NAME,B01001_001E&for=state:*
+https://www.census.gov/acs/www/data/data-tables-and-tools/narrative-profiles/2019/report.php?geotype=nation&usVal=us
+https://data.census.gov/cedsci/table?g=0100000US,%240400000&tid=ACSST5Y2019.S0101
+
+
+## American National Standards Institute (ANSI) Codes for States
+https://www.census.gov/library/reference/code-lists/ansi/ansi-codes-for-states.html
+
+[4] https://ndc.services.cdc.gov/case-definitions/coronavirus-disease-2019-2021/
 
 # Calculated Features
 

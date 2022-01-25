@@ -31,12 +31,12 @@ WITH
             `coursera-analytics-class.covid_by_percent.cdc_covid_cases_Jan_19`  --change dataset Date
         GROUP BY 
             state, submission_date
-    ),
+),
     rolling_cases AS(
         SELECT 
             CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
             state,
-            SUM(CAST(new_case AS INT64)) OVER(
+            SUM(new_case+pnew_case) OVER(
                 PARTITION BY state
                 ORDER BY CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') ASC
                 ROWS BETWEEN 13 PRECEDING AND CURRENT ROW
@@ -53,14 +53,14 @@ WITH
         SELECT 
             CAST(REPLACE(cdc.submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
             state,
-            SUM(CAST(cdc.tot_cases AS INT64)) total_cases,
-            SUM(CAST(cdc.new_case AS INT64)) new_cases,
-            SUM(CAST(cdc.tot_death AS INT64)) total_deaths,
-            SUM(CAST(cdc.new_death AS INT64)) new_deaths,
+            SUM(cdc.tot_cases) AS total_cases,
+            SUM(cdc.new_case+cdc.pnew_case ) AS new_cases,
+            SUM(cdc.tot_death) AS total_deaths,
+            SUM(cdc.new_death+cdc.pnew_death) AS new_deaths,
         FROM
-            data_cleaned as cdc
+            data_cleaned as cdc 
         GROUP BY
-            state, submit_date--, rc.submit_date, rc.state
+            state, submit_date
         ORDER BY 
             submit_date DESC
 ),
