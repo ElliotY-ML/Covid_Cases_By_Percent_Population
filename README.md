@@ -1,5 +1,5 @@
 # Overview
-This repository contains codes, data, and calculated features for visualizing recent COVID-19 cases in the U.S.  
+This repository contains source code, data, and calculated features for visualizing recent COVID-19 cases in the U.S.  
 The transformed data is utilized in Tableau Public for creating dashboards with line graphs, bar charts, and heat maps of COVID-19 cases and deaths.
 
 ![Tableau Dashboard](/img/CovidDashScreenShot.JPG)
@@ -13,7 +13,7 @@ Estimates of the percentage of each state population that is currently infected 
 The data is presented as a percentage because it may be more intuitively digested by the general population, as opposed to using a basis of per million or per 100,000 people.
 
 The author selected time intervals of 14-days based on studies that show that an average period of COVID-19 infectiousness and risk of transmission is between 3 days before and 8 days after symptom onset, 
-and COVID-19 RNA usually becomes undetectable from upper respiratory tract samples about 2 weeks after symptom onset[1, 2, 3].
+and COVID-19 RNA usually becomes undetectable from upper respiratory tract samples about 2 weeks after symptom onset[3, 4, 5].
 
 [1]  https://www.nytimes.com/interactive/2021/us/covid-cases.html  
 [2]  https://covid.cdc.gov/covid-data-tracker/#datatracker-home  
@@ -81,3 +81,7 @@ The Tableau Public Viz is manually updated with the latest CDC COVID-19 data wit
 # Future Improvements 
 - Add scripting to automate refresh of U.S. CDC COVID-19 data. 
 - Interactive analysis using Jupyter Notebook 
+
+# License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md)
