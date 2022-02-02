@@ -4,9 +4,9 @@ and ANSI State Codes.  Calculations for
 2. sum of new covid cases on a 14-day basis, as a percentage of population for individual states    
 
 Query was completed on Google Cloud Platform BigQuery.  The tables were named for files as follows:
-1. `cdc_covid_cases_Jan_13` AS datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time.csv
-2. `acs_5Y_2019` AS datasets/ACSST5Y2019.S0101_2022-01-14T1743264/ACSST5Y2019.S0101_data_with_overlays_2021-12-10T154120.csv
-3. `state_abbreviations` AS datasets/state_abbrev.txt
+1. datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time.csv AS `cdc_covid_cases_Jan_13`
+2. datasets/ACSST5Y2019.S0101_2022-01-14T1743264/ACSST5Y2019.S0101_data_with_overlays_2021-12-10T154120.csv AS `acs_5Y_2019` 
+3. datasets/state_abbrev.txt AS `state_abbreviations`
 */
 
 WITH 
