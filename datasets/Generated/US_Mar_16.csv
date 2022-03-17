@@ -1,4 +1,4 @@
-submit_date,state_n,total_cases,new_cases,total_deaths,new_deaths,sum_cases_last_14_days,state_pop,new_cases_percent,cases_last_14_pop_percent
+submit_date,state,total_cases,new_cases,total_deaths,new_deaths,sum_cases_last_14_days,state_pop,new_cases_percent,cases_last_14_pop_percent
 2022-03-15,AK,236001,0,1168,0,3426,737068,0.0,0.0046481464396772075
 2022-03-15,AL,1290171,438,18944,1,5610,4876250,8.98231222763394e-05,0.001150474237375032
 2022-03-15,AR,827336,423,10971,21,6659,2999370,0.00014102961621940608,0.0022201328945745274

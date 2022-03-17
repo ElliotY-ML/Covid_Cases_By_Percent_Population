@@ -29,7 +29,8 @@ U.S. CDC reports COVID-19 cases and death counts online at this [link](https://d
 The data is a collection of the most recent numbers reported by states, territories, and other jurisdictions to the CDC.
 
 **Notes**:  
--  This dataset includes Confirmed Cases and Probable Cases, as defined by CSTE [6]. Confirmed cases meet molecular laboratory testing evidence, while Probable cases meet clinical criteria without laboratory evidence.  Many jurisdictions include both their confirmed and probable cases ("pnew_case") into reported "Total Cases" and "New Case" counts.
+-  This dataset includes Confirmed Cases and Probable Cases, as defined by CSTE [6]. Confirmed cases meet molecular laboratory testing evidence, while Probable cases meet clinical criteria without laboratory evidence. 
+Many jurisdictions include both their confirmed and probable cases ("pnew_case") into reported "Total Cases" and "New Case" counts.
 -  Counts for New York City and New York State are provided separately.  This data must be recombined to analyze them as one New York state.
 
 
@@ -56,14 +57,14 @@ Download the "National FIPS and GNIS Codes File" from the reference library.
 # Calculated Features
 The following calculations are performed on the data:
 1.  `Daily New Cases as Percent of State Population = New Cases/State Population`
-2.  `Cases Last 14 Days = Sum(New Cases) Between Submit Date and Previous 13 Dates`
-3.  `Cases Last 14 Days as Percent of Statae Population = Cases Last 14 Days/State Population`
+2.  `New Cases in Last 14 Days = Sum(New Cases) Between Submit Date and Previous 13 Dates`
+3.  `New Cases in Last 14 Days as Percent of Statae Population = Cases Last 14 Days/State Population`
 
 
 # SQL
-All datasets were uploaded to Google Cloud Platform BigQuery for extracting, joining, and performing calculations.
+All datasets were uploaded to Google Cloud Platform BigQuery to execute a query for extracting, joining, and performing calculations.
 - `src/import_CDC_data_schema.sql` imports the CDC data as strings.  
-- `src/covid19_ETL.sql` joins the three datasets to create a table with calculated features appended to the original CDC data.
+- `src/covid19_ETL.sql` queries the three datasets to create a table with calculated features appended to the original CDC data.
 
 
 # Tableau
@@ -72,14 +73,27 @@ SQL output data is visualized with charts, heat maps, and dashboards on Tableau 
 Direct link to author's Tableau Public Viz: https://public.tableau.com/app/profile/ellioty.ml/viz/U.S._Covid19_Cases_Percent_Population/Dash14Day
 
 ### Refresh Data
-The Tableau Public Viz is manually updated with the latest CDC COVID-19 data with these following steps:
+Method 1: Use **Google Cloud Platform BigQuery** to generate a CSV file with current U.S. CDC COVID-19 data that will be uploaded to the Tableau Public Viz:
 1.  Download CDC U.S. COVID-19 Cases and Deaths By State  
-2.  Create a new table in the project SQL database.  Copy latest CDC U.S. COVID-19 data into this table
+2.  Create a new table in the project SQL database.  Copy latest U.S. CDC COVID-19 data into this table
 3.  Run `covid19_ETL.sql` to prepare data for Tableau.  Save output as `datasets/Generated/US_MMM_DD.csv` where MMM is month as a string and DD is date of this update.
 4.  Replace existing Tableau visualization data source with `datasets/Generated/US_MMM_DD.csv`.
 
+Method 2: Use **Python-SQLite** to generate a CSV file with current U.S. CDC COVID-19 data that wi6ll be uploaded to the Tableau Public Viz:
+1. Set up your Anaconda environment.  
+2. Clone `https://github.com/ElliotY-ML/Covid_Cases_By_Percent_Population.git` GitHub repo to your local machine.
+3. Create and activate a new environment, named `covid_data` with Python 3.8. Be sure to run the command from the project root directory since the environment.yml and pkgs.txt files are there. 
+If prompted to proceed with the install `(Proceed [y]/n)` type y.
+	```
+	conda env create -f environment.yml
+	conda activate covid_data
+	```
+4. Open a conda terminal and execute `src\build_dataset.py`.  This script will retreive current U.S. CDC COVID-19 data and generate an output dataset to `datasets/Generated/US_MMM_DD.csv`. 
+This dataset is the same as one that is obtained following Method 1.
+5. Replace existing Tableau visualization data source with `datasets/Generated/US_MMM_DD.csv`.
+
 # Future Improvements 
-- Add scripting to automate refresh of U.S. CDC COVID-19 data. 
+- ~~Add scripting to automate refresh of U.S. CDC COVID-19 data.~~  Completed build_dataset.py on Mar-17-2022
 - Interactive analysis using Jupyter Notebook 
 
 # License

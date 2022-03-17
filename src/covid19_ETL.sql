@@ -52,7 +52,7 @@ WITH
     cases_by_state AS(
         SELECT 
             cdc.submit_date,
-            state_n,
+            state_n AS state,
             SUM(cdc.tot_cases) AS total_cases,
             SUM(cdc.new_case) AS new_cases,
             SUM(cdc.tot_death) AS total_deaths,
@@ -60,7 +60,7 @@ WITH
         FROM
             data_cleaned as cdc 
         GROUP BY
-            state_n, submit_date
+            state, submit_date
         ORDER BY 
             submit_date DESC
 ),
@@ -86,10 +86,10 @@ FROM
 INNER JOIN 
     rolling_cases AS rc
 ON 
-    cs.submit_date=rc.submit_date AND cs.state_n=rc.state_n
+    cs.submit_date=rc.submit_date AND cs.state=rc.state_n
 LEFT JOIN 
     state_population AS pop
 ON 
-    cs.state_n=pop.state_abb
+    cs.state=pop.state_abb
 ORDER BY 
     cs.submit_date DESC 
