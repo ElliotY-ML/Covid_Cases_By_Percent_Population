@@ -5,7 +5,7 @@ Created on Thu Mar 17 14:49:25 2022
 @author: Elliot
 
 This code will 
-1. Import Covid Cases data from the CDC website, 
+1. Import Covid Cases data from the U.S. CDC website, 
 U.S. Census ACS 5-Year Survey 2019 and ANSI Codes for States 
 stored as CSV files in the `..\datasets` folder.  
 2. Load all three datasets into an SQLite database.
