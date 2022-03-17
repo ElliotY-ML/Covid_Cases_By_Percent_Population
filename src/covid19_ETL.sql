@@ -12,11 +12,11 @@ Query was completed on Google Cloud Platform BigQuery.  The tables were named fo
 WITH 
     data_cleaned AS(
         SELECT 
-            submission_date,
+            CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
             CASE
                 WHEN state='NYC' THEN 'NY'
                 ELSE state
-                END AS state,
+                END AS state_n,
             SUM(CAST(REPLACE(tot_cases, ',','') AS INT64)) AS tot_cases,
             SUM(CAST(REPLACE(conf_cases, ',','') AS INT64)) as conf_cases,
             SUM(CAST(REPLACE(prob_cases, ',','') AS INT64)) as prob_cases,
@@ -30,15 +30,15 @@ WITH
         FROM
             `coursera-analytics-class.covid_by_percent.cdc_covid_cases_Jan_19`  --change dataset Date
         GROUP BY 
-            state, submission_date
+            state_n, submit_date
 ),
     rolling_cases AS(
         SELECT 
-            CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
-            state,
+            submit_date,
+            state_n,
             SUM(new_case) OVER(
-                PARTITION BY state
-                ORDER BY CAST(REPLACE(submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') ASC
+                PARTITION BY state_n
+                ORDER BY submit_date ASC
                 ROWS BETWEEN 13 PRECEDING AND CURRENT ROW
             ) AS sum_cases_last_14_days
         FROM
@@ -51,16 +51,16 @@ WITH
 
     cases_by_state AS(
         SELECT 
-            CAST(REPLACE(cdc.submission_date, '/', '-') AS DATE FORMAT 'MM-DD-YYYY') AS submit_date,
-            state,
+            cdc.submit_date,
+            state_n,
             SUM(cdc.tot_cases) AS total_cases,
             SUM(cdc.new_case) AS new_cases,
             SUM(cdc.tot_death) AS total_deaths,
-            SUM(cdc.new_death) AS new_deaths,
+            SUM(cdc.new_death) AS new_deaths
         FROM
             data_cleaned as cdc 
         GROUP BY
-            state, submit_date
+            state_n, submit_date
         ORDER BY 
             submit_date DESC
 ),
@@ -86,10 +86,10 @@ FROM
 INNER JOIN 
     rolling_cases AS rc
 ON 
-    cs.submit_date=rc.submit_date AND cs.state=rc.state
-RIGHT JOIN 
+    cs.submit_date=rc.submit_date AND cs.state_n=rc.state_n
+LEFT JOIN 
     state_population AS pop
 ON 
-    cs.state=pop.state_abb
+    cs.state_n=pop.state_abb
 ORDER BY 
     cs.submit_date DESC 
