@@ -4,16 +4,16 @@ Created on Thu Mar 17 14:49:25 2022
 
 @author: Elliot
 
-This code will 
+Run this code from root folder. This code will 
 1. Import Covid Cases data from the U.S. CDC website, 
 U.S. Census ACS 5-Year Survey 2019 and ANSI Codes for States 
-stored as CSV files in the `..\datasets` folder.  
+stored as CSV files in the `.\datasets` folder.  
 2. Load all three datasets into an SQLite database.
-3. Execute a version of the `covid19_ETL.sql` query modified 
+3. Execute a version of the `.\src\covid19_ETL.sql` query modified 
 for SQLite to join datasets and calculate total Covid cases 
 in the past 14-day for each state over through time.
 4. Output a file with the query results into a file named `US_MMM_DD.csv`
-in the `..\datasets\Generated` folder, where MMM is the abbreviation of
+in the `.\datasets\Generated` folder, where MMM is the abbreviation of
 current month and DD is the current day.
 
 The output file can be used to create mentioned Tableau Visualization.
@@ -70,7 +70,7 @@ con.commit()
 
 # Load State Abbreviations from text file
 state_abbrev = []
-with open(os.path.join('..','datasets','state_abbrev.txt')) as f:
+with open(os.path.join('datasets','state_abbrev.txt')) as f:
     for i,l in enumerate(f.readlines()):
         state_abbrev.append(','.join(l.strip('\n').split('|')))
         
@@ -94,7 +94,7 @@ con.commit()
 
 # Load Census Data from local csv file
 census = []
-with open(os.path.join('..','datasets','ACSST5Y2019.S0101_2022-01-14T174326','ACSST5Y2019.S0101_data_with_overlays_2021-12-10T154120.csv')) as f:
+with open(os.path.join('datasets','ACSST5Y2019.S0101_2022-01-14T174326','ACSST5Y2019.S0101_data_with_overlays_2021-12-10T154120.csv')) as f:
     for i,l in enumerate(f.readlines()):
         census.append(l)
 f.close()
@@ -153,7 +153,7 @@ con.commit()
 
 # Query Datasets
 
-with open('covid19_ETL.sql') as ETL:
+with open(os.path.join('src','covid19_ETL.sql')) as ETL:
     data_combine_query = ETL.read()
 
 ETL.close()
@@ -194,7 +194,7 @@ cur.execute(data_combine_query).fetchall()
 db_df = pd.read_sql_query(data_combine_query, con)
 
 # Use Pandas to write df to csv
-output_path = os.path.join('..', 'datasets','Generated','US_'+dt.date.today().strftime('%b_%d')+'.csv')
+output_path = os.path.join('datasets','Generated','US_'+dt.date.today().strftime('%b_%d')+'.csv')
 db_df.to_csv(output_path, index=False)
 
 
