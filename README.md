@@ -58,7 +58,7 @@ Download the "National FIPS and GNIS Codes File" from the reference library.
 The following calculations are performed on the data:
 1.  `Daily New Cases as Percent of State Population = New Cases/State Population`
 2.  `New Cases in Last 14 Days = Sum(New Cases) Between Submit Date and Previous 13 Dates`
-3.  `New Cases in Last 14 Days as Percent of Statae Population = Cases Last 14 Days/State Population`
+3.  `New Cases in Last 14 Days as Percent of State Population = Cases Last 14 Days/State Population`
 
 
 # SQL
@@ -73,7 +73,7 @@ Method 1: Use **Google Cloud Platform BigQuery** to generate a CSV file with cur
 5.  Create a New Query. Copy and paste the `covid19_ETL.sql` into the blank query.  
 6.  Run the Query. Save output as `datasets/Generated/US_MMM_DD.csv` where MMM is month as a string and DD is the current date.
 
-Method 2: Use **Python (SQLite)** to generate a CSV file with current U.S. CDC COVID-19 data:
+Method 2: Use **Python (w/ SQLite and Requests libraries)** to generate a CSV file with current U.S. CDC COVID-19 data:
 1. Set up your Anaconda environment.  
 2. Clone `https://github.com/ElliotY-ML/Covid_Cases_By_Percent_Population.git` GitHub repo to your local machine.
 3. Create and activate a new environment, named `covid_data` with Python 3.8. Be sure to run the command from the project root directory since the environment.yml and pkgs.txt files are there. 
@@ -88,9 +88,9 @@ This dataset is the same as one that is obtained following Method 1.
 
 
 # Tableau
-The SQL query result data is visualized with charts, heat maps, and dashboards on Tableau Public.
+The SQL query result dataset is visualized with charts, heat maps, and dashboards on Tableau Public.
 
-Direct link to author's Tableau Public Viz: https://public.tableau.com/app/profile/ellioty.ml/viz/U.S._Covid19_Cases_Percent_Population/Dash14Day
+Direct link to author's Tableau Public Viz: https://public.tableau.com/app/profile/ellioty.ml/viz/US_Covid19_Cases_Percent_Population/Dash14Day
 
 ### Refresh Data
 To refresh the Tableau Viz with the lastest CDC COVID-19 Cases data:
