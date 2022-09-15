@@ -55,10 +55,11 @@ Download the "National FIPS and GNIS Codes File" from the reference library.
 
 
 # Calculated Features
-The following calculations are performed on the data:
+The following 3 features are calculated from the datasets:
 1.  `Daily New Cases as Percent of State Population = New Cases/State Population`
 2.  `New Cases in Last 14 Days = Sum(New Cases) Between Submit Date and Previous 13 Dates`
 3.  `New Cases in Last 14 Days as Percent of State Population = Cases Last 14 Days/State Population`
+
 
 
 # SQL
