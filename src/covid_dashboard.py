@@ -62,7 +62,8 @@ external_stylesheets = [
 ]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-app.title = "DataViz COVID Infection Rates"  # Appears in web browser bar and in goodle search results
+#server = app.server
+app.title = "DataViz US COVID Infection Rates"  # Appears in web browser bar and in goodle search results
 
 app.layout = html.Div(
     children=[
@@ -74,10 +75,14 @@ app.layout = html.Div(
                 ),
                 html.P(
                     children='''A dashboard that presents daily new cases of COVID-19 reported by the US CDC, transformed into a percentage of each state population.
-                        The left side of this dashboard shows new cases in each state on a selected date.
-                        The right side of this dashboard shows new cases in a selected state over a selected date range.
-                        The top visuals show data for each 1-day period and the bottom visuals show data over 14-day periods.
+                        Additionally, 14-days aggregated new cases of COVID-19 up to each date is presented.
+                        
+                        DISCLAIMER: This app is not intended to provide medical advice nor public health statements 
                     ''',
+                        # The left side of this dashboard shows new cases in each state on a selected date.
+                        # The right side of this dashboard shows new cases in a selected state over a selected date range.
+                        # The top visuals show data for each 1-day period and the bottom visuals show data over 14-day periods.
+                  
          
 #                      The daily new case data is transformed to new cases summed over 14-days
 #                      The new case data are further transformed to represent the percentage of a state population
@@ -96,18 +101,24 @@ app.layout = html.Div(
                         # Create Dropdown then Map Bubble charts on left side
                         html.Div(
                             children=[
-                                    html.Div('Date', className='menu-title'),
-                                    dcc.DatePickerSingle(
-                                        id='date-filter',
-                                        min_date_allowed=covid_df['submit_date'].min(),
-                                        max_date_allowed=covid_df['submit_date'].max(),
-#                                        display_format='MMM D YYYY',
-#                                        date=covid_df['submit_date'].max(),
-                                        clearable=False,
-                                        date='2022-01-18',
+                                    html.H3('New cases in each state on selected date', className='menu-title'),
+                                    html.Div(
+                                        children=[
+                                            html.Div('Date', className='menu-title'),
+                                            dcc.DatePickerSingle(
+                                                id='date-filter',
+                                                min_date_allowed=covid_df['submit_date'].min(),
+                                                max_date_allowed=covid_df['submit_date'].max(),
+#                                               display_format='MMM D YYYY',
+#                                               date=covid_df['submit_date'].max(),
+                                                clearable=False,
+                                                date='2022-01-18',
+                                            ),
+                                        ],
+                                        className='menu-single',
                                     ),
                             ],
-                            className='menu',
+                            className='menu-card',
                         ),
                         # Create Map Bubble charts
                         html.Div(
@@ -140,38 +151,53 @@ app.layout = html.Div(
                             children=[
                                 html.Div(
                                     children=[
-                                        html.Div(children='State', className='menu-title'),
-                                        dcc.Dropdown(
-                                            id="state-filter",
-                                            options=[
-                                                {"label":state, "value":state}
-                                                for state in np.sort(covid_df['state'].unique())
+                                        html.Div(
+                                            children=[
+                                                html.H3('New cases in a selected state over a selected date range', className='menu-title'),
+                                                html.Div(
+                                                    children=[
+                                                        html.Div(
+                                                            children=[
+                                                                html.Div('State', className='menu-title'),
+                                                                dcc.Dropdown(
+                                                                    id="state-filter",
+                                                                    options=[
+                                                                        {"label":state, "value":state}
+                                                                        for state in np.sort(covid_df['state'].unique())
+                                                                    ],
+                                                                    value="NY",
+                                                                    clearable=False,
+                                                                    searchable=True,
+#                                                                   multi=True,
+                                                                    className='dropdown',
+                                                                ),
+                                                            ],
+                                                        ),
+                                                        html.Div(
+                                                            children=[
+                                                                html.Div(children='Date Range', className='menu-title'),
+                                                                dcc.DatePickerRange(
+                                                                    id='date-range',
+#                                                                   min_date_allowed=covid_df['submit_date'].min().date(),
+#                                                                   max_date_allowed=covid_df['submit_date'].max().date(),
+                                                                    min_date_allowed=covid_df['submit_date'].min(),
+                                                                    max_date_allowed=covid_df['submit_date'].max(),
+#                                                                   start_date=covid_df['submit_date'].min(),
+                                                                    start_date = '2021-10-01',
+                                                                    end_date=covid_df['submit_date'].max(),
+                                                                    className='dropdown',
+                                                                ),
+                                                            ],
+                                                        ),
+                                                    ],
+                                                    className='menu-multi',
+                                                ),
                                             ],
-                                            value="NY",
-                                            clearable=False,
-                                            searchable=True,
-#                                       multi=True,
-                                            className='dropdown',
+                                            className='menu-card', 
                                         ),
                                     ],  
                                 ),
-                                html.Div(
-                                    children=[
-                                        html.Div(children='Date Range', className='menu-title'),
-                                        dcc.DatePickerRange(
-                                            id='date-range',
-#                                            min_date_allowed=covid_df['submit_date'].min().date(),
-#                                            max_date_allowed=covid_df['submit_date'].max().date(),
-                                            min_date_allowed=covid_df['submit_date'].min(),
-                                            max_date_allowed=covid_df['submit_date'].max(),
-#                                            start_date=covid_df['submit_date'].min(),
-                                            start_date = '2021-10-01',
-                                            end_date=covid_df['submit_date'].max(),
-                                        ),
-                                    ]
-                                ),
-                            ],
-                            className='menu', 
+                            ],                           
                         ),
                         html.Div(
                             children=[
