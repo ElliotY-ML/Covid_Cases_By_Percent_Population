@@ -272,7 +272,7 @@ def update_charts(date, state, start_date, end_date):
     
     daily_cases_map_figure.update_layout(
             title_text='<b>Daily New Cases of Covid in US on %s</b>'% date,
-            width=800,
+            width=700,
     )
     
 
@@ -294,7 +294,7 @@ def update_charts(date, state, start_date, end_date):
     
     d14_cases_map_figure.update_layout(
             title_text='<b>14-day New Cases of Covid in US on %s</b>'% date,
-            width=800,
+            width=700,
     )
     
     
@@ -312,7 +312,7 @@ def update_charts(date, state, start_date, end_date):
     daily_cases_chart_figure = make_subplots(specs=[[{"secondary_y":True}]])
     daily_cases_chart_figure.update_layout(
             title_text='<b>Daily New Cases of COVID in %s</b>'%state,
-            width=800,
+            width=700,
     )
     daily_cases_chart_figure.update_xaxes(title_text='Date')
     daily_cases_chart_figure.update_yaxes(title_text='New Cases <b>(Count)</b>', secondary_y=False, color=" #079A82")
@@ -351,7 +351,7 @@ def update_charts(date, state, start_date, end_date):
     d14_cases_chart_figure = make_subplots(specs=[[{"secondary_y":True}]])
     d14_cases_chart_figure.update_layout(
             title_text='<b>14-day New Cases of COVID in %s</b>'%state,
-            width=800,
+            width=700,
     )
     d14_cases_chart_figure.update_xaxes(title_text='Date')
     d14_cases_chart_figure.update_yaxes(title_text='New Cases (14d) <b>(Count)</b>', secondary_y=False, color=" #079A82")
