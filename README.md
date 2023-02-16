@@ -5,9 +5,17 @@ The transformed data is uploaded to Tableau Public for creating dashboards with 
 ![Tableau Dashboard](/img/TableauScreenShot.JPG)
 [Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&:display_count=n&:origin=viz_share_link)
 
-*NEW 11/2022* The transformed data is visualized in a Plotly Dash dashboard. The dashboard script `src/covid_dashboard.py` can be deployed on a local server or on a service such as Heroku.
+***NEW 11/2022*** The transformed data is visualized in a Plotly Dash dashboard. The dashboard script `src/covid_dashboard.py` can be deployed on a local server or on a cloud service such as Heroku and Google Cloud Platform.
 ![Created using Dash](/img/PlotlyDashScreenShot.JPG)
-[Link to Dash dashboard deployed on Heroku](https://ey-dash-covid.herokuapp.com/)
+[Link to Dash dashboard deployed on Google Cloud Platform](https://covid-dash-374301.ue.r.appspot.com/)
+
+# Table of Contents
+- [Introduction](#introduction)
+- [Data Sources](#data-sources)
+- [Calculated Features](#calculated-features)
+- [SQL](#sql)
+- [Tableau](#tableau)
+- [Future Improvements](#future-improvements)
 
 
 # Introduction  
@@ -105,9 +113,9 @@ To refresh the Tableau Viz with the lastest CDC COVID-19 Cases data:
 
 
 # Future Improvements 
-- ~~Add scripting to automate refresh of U.S. CDC COVID-19 data.~~  Completed `src/build_dataset.py` on Mar-17-2022
-- ~~Interactive analysis using Jupyter Notebook .~~ Completed Plotly Dash dashboard in `src/covid_dashboard.py` on Nov-21-2022
-- ~~Interactive dashboard application.~~ Deployed Plotly Dash dashboard to GCP App Engine on Jan-31-2023. See this repo: https://github.com/ElliotY-ML/covid-dashboard-on-gcp
+✅ Add scripting to automate refresh of U.S. CDC COVID-19 data.  ***Completed*** `src/build_dataset.py` on Mar-17-2022  
+✅ Interactive analysis using Jupyter Notebook. ***Completed*** Plotly Dash dashboard in `src/covid_dashboard.py` on Nov-21-2022  
+✅ Interactive dashboard application. ***Completed*** Deployed Plotly Dash dashboard to Heroku on Nov-21-2022. ***Updated*** Deployed Plotly Dash dashboard to GCP App Engine on Jan-31-2023. See this repo: https://github.com/ElliotY-ML/covid-dashboard-on-gcp
 
 # License
 
