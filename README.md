@@ -1,11 +1,11 @@
 # Overview
 This repository contains source code, data, and calculated features for visualizing recent COVID-19 cases in the U.S.  
-The transformed data is uploaded to Tableau Public for creating dashboards with line graphs, bar charts, and heat maps of COVID-19 cases and deaths.
+The transformed data is uploaded to Tableau Public for creating interactive dashboards with line graphs, bar charts, and heat maps of COVID-19 cases and deaths.
 
 ![Tableau Dashboard](/img/TableauScreenShot.JPG)
 [Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&:display_count=n&:origin=viz_share_link)
 
-***NEW 11/2022*** The transformed data is visualized in a Plotly Dash dashboard. The dashboard script `src/covid_dashboard.py` can be deployed on a local server or on a cloud service such as Heroku and Google Cloud Platform.
+***NEW 11/2022*** The transformed data is visualized in an interactive Plotly Dash dashboard. The dashboard script `src/covid_dashboard.py` can be deployed on a local server or on a cloud service such as Heroku and Google Cloud Platform.
 ![Created using Dash](/img/PlotlyDashScreenShot.JPG)
 [Link to Dash dashboard deployed on Google Cloud Platform](https://covid-dash-374301.ue.r.appspot.com/)
 
@@ -15,6 +15,7 @@ The transformed data is uploaded to Tableau Public for creating dashboards with 
 - [Calculated Features](#calculated-features)
 - [SQL](#sql)
 - [Tableau](#tableau)
+- [Plotly Dash Dashboard](#dash-app)
 - [Future Improvements](#future-improvements)
 
 
@@ -90,7 +91,7 @@ Method 1: Use **Google Cloud Platform BigQuery** to generate a CSV file with cur
 Method 2: Use **Python (w/ SQLite and Requests libraries)** to generate a CSV file with current U.S. CDC COVID-19 data:
 1. Set up your Anaconda environment.  
 2. Clone `https://github.com/ElliotY-ML/Covid_Cases_By_Percent_Population.git` GitHub repo to your local machine.
-3. Create and activate a new environment, named `covid_data` with Python 3.8. Be sure to run the command from the project root directory since the environment.yml and pkgs.txt files are there. 
+3. Create and activate a new environment, named `covid_data` with Python 3.8+. Be sure to run the command from the project root directory since the environment.yml and pkgs.txt files are there. 
 If prompted to proceed with the install `(Proceed [y]/n)` type y.
 	```
 	conda env create -f environment.yml
@@ -102,7 +103,7 @@ This dataset is the same as one that is obtained following Method 1.
 
 
 # Tableau
-The SQL query result dataset is visualized with charts, heat maps, and dashboards on Tableau Public.
+The SQL query result dataset is visualized with charts, heat maps, and interactive dashboards on Tableau Public.
 
 Direct link to author's Tableau Public Viz: https://public.tableau.com/app/profile/ellioty.ml/viz/US_Covid19_Cases_Percent_Population/Dash14Day
 
@@ -111,11 +112,16 @@ To refresh the Tableau Viz with the lastest CDC COVID-19 Cases data:
 1. Follow the SQL section to generate a CSV file with the most recent CDC data.  
 2. Replace existing Tableau visualization data source with `datasets/Generated/US_MMM_DD.csv`.
 
+# <a name="dash-app"></a>Plotly Dash Dashboard
+The SQL query result dataset is also visualized with charts and heat maps on an interactive dashboard created with Plotly Dash. 
+This dashboard is deployed on Google Cloud Platform (App Engine).
+
+To learn more, please visit the repo: https://github.com/ElliotY-ML/covid-dashboard-on-gcp
 
 # Future Improvements 
 ✅ Add scripting to automate refresh of U.S. CDC COVID-19 data.  ***Completed*** `src/build_dataset.py` on Mar-17-2022  
 ✅ Interactive analysis using Jupyter Notebook. ***Completed*** Plotly Dash dashboard in `src/covid_dashboard.py` on Nov-21-2022  
-✅ Interactive dashboard application. ***Completed*** Deployed Plotly Dash dashboard to Heroku on Nov-21-2022. ***Updated*** Deployed Plotly Dash dashboard to GCP App Engine on Jan-31-2023. See this repo: https://github.com/ElliotY-ML/covid-dashboard-on-gcp
+✅ Interactive dashboard application. ***Completed*** Deployed Plotly Dash dashboard to Heroku on Nov-21-2022. ***Updated*** Deployed Plotly Dash dashboard to GCP App Engine on Jan-31-2023.
 
 # License
 
