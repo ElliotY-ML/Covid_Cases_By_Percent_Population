@@ -11,6 +11,7 @@ The transformed data is uploaded to Tableau Public for creating interactive dash
 
 # Table of Contents
 - [Introduction](#introduction)
+- [Dependencies](#dependencies)
 - [Data Sources](#data-sources)
 - [Calculated Features](#calculated-features)
 - [SQL](#sql)
@@ -24,7 +25,7 @@ The transformed data is uploaded to Tableau Public for creating interactive dash
 This project presents a different aspect than those seen on New York Times [1] and U.S. CDC analysis [2] by analyzing totals of new COVID-19 cases reported in the past 14 days.  
 
 Estimates of the percentage of each state population that is currently infected with COVID-19 is calculated by normalizing the past 14 day new case totals to their respective state populations. 
-The data is presented as a percentage because it may be more intuitively digested by the general population, as opposed to using a basis of per million or per 100,000 people.
+The data is presented as a percentage because it may be more intuitively understood by the general population, as opposed to using a basis of per million or per 100,000 people.
 
 The author selected time intervals of 14-days based on studies that show that an average period of COVID-19 infectiousness and risk of transmission is between 3 days before and 8 days after symptom onset, 
 and COVID-19 RNA usually becomes undetectable from upper respiratory tract samples about 2 weeks after symptom onset[3, 4, 5].
@@ -34,6 +35,18 @@ and COVID-19 RNA usually becomes undetectable from upper respiratory tract sampl
 [3]  https://www.cdc.gov/coronavirus/2019-ncov/your-health/quarantine-isolation.html  
 [4]  Peeling RW, Heymann DL, Teo Y, Garcia PJ. Diagnostics for COVID-19: moving from pandemic response to control. Lancet. Published online December 20, 2021: https://doi.org/10.1016/S0140-6736(21)02346-1  
 [5]  https://www.nytimes.com/interactive/2022/01/22/science/charting-omicron-infection.html
+
+
+# Dependencies
+This repo requires a Google Cloud Platform account, a Tableau Public account, Python3, and the following Python libraries:  
+- SQLite3  
+- Requests  
+- pandas  
+- Numpy  
+- Plotly  
+- Dash  
+- Gunicorn  
+- Werkzeug==2.0.3
 
 
 # Data Sources
