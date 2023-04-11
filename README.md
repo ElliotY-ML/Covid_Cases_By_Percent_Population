@@ -1,6 +1,6 @@
 # Overview
 This repository contains source code, data, and calculated features for visualizing recent COVID-19 cases in the U.S.  
-The transformed data is uploaded to Tableau Public for creating interactive dashboards with line graphs, bar charts, and heat maps of COVID-19 cases and deaths.
+The transformed data is uploaded to Tableau Public for creating interactive dashboards with line graphs, bar charts, and bubble maps of COVID-19 cases and deaths.
 
 ![Tableau Dashboard](/img/TableauScreenShot.JPG)
 [Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&:display_count=n&:origin=viz_share_link)
@@ -116,7 +116,7 @@ This dataset is the same as one that is obtained following Method 1.
 
 
 # Tableau
-The SQL query result dataset is visualized with charts, heat maps, and interactive dashboards on Tableau Public.
+The SQL query result dataset is visualized with charts, bubble maps, and interactive dashboards on Tableau Public.
 
 Direct link to author's Tableau Public Viz: https://public.tableau.com/app/profile/ellioty.ml/viz/US_Covid19_Cases_Percent_Population/Dash14Day
 
@@ -126,7 +126,7 @@ To refresh the Tableau Viz with the lastest CDC COVID-19 Cases data:
 2. Replace existing Tableau visualization data source with `datasets/Generated/US_MMM_DD.csv`.
 
 # <a name="dash-app"></a>Plotly Dash Dashboard
-The SQL query result dataset is also visualized with charts and heat maps on an interactive dashboard created with Plotly Dash. 
+The SQL query result dataset is also visualized with charts and bubble maps on an interactive dashboard created with Plotly Dash. 
 This dashboard is deployed on Google Cloud Platform (App Engine).
 
 To learn more, please visit the repo: https://github.com/ElliotY-ML/covid-dashboard-on-gcp
