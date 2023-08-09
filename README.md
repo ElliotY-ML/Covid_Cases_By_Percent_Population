@@ -60,6 +60,10 @@ The data is a collection of the most recent numbers reported by states, territor
 Many jurisdictions include both their confirmed and probable cases ("pnew_case") into reported "Total Cases" and "New Case" counts.
 -  Counts for New York City and New York State are provided separately.  This data must be recombined to analyze them as one New York state.
 
+**Update as of 2023**
+-  This daily-updated dataset was discontinued October 20, 2022 and replaced by a weekly-updated dataset. This project supports only the daily-updated dataset.
+-  A copy of the daily-updated dataset is located in [`./datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time_Jan_13.csv`](./datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time_Jan_13.csv).
+
 
 
 ## U.S. Census Bureau - 2019 American Community Survey 5-year Estimate 
