@@ -62,7 +62,7 @@ Many jurisdictions include both their confirmed and probable cases ("pnew_case")
 
 **Update as of 2023**
 -  This daily-updated dataset was discontinued October 20, 2022 and replaced by a weekly-updated dataset. This project supports only the daily-updated dataset.
--  A copy of the daily-updated dataset is located in [`./datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time_Jan_13.csv`](./datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time_Jan_13.csv).
+-  A copy of the daily-updated dataset retrieved on November 14, 2022 is located in [`./datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time_Nov_14_22.csv`](./datasets/United_States_COVID-19_Cases_and_Deaths_by_State_over_Time_Nov_14_22.csv).
 
 
 
