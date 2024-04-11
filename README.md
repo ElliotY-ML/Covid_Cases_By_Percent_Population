@@ -2,12 +2,13 @@
 This repository contains source code, data, and calculated features for visualizing recent COVID-19 cases in the U.S.  
 The transformed data is uploaded to Tableau Public for creating interactive dashboards with line graphs, bar charts, and bubble maps of COVID-19 cases and deaths.
 
-![Tableau Dashboard](/img/TableauScreenShot.JPG)
-[Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&:display_count=n&:origin=viz_share_link)
+![Tableau Dashboard](/img/TableauScreenShot.JPG)  
+[Link to Dashboard on Tableau Public](https://public.tableau.com/views/US_Covid19_Cases_Percent_Population/Dash14Day?:language=en-US&:display_count=n&:origin=viz_share_link)  
 
 ***NEW 11/2022*** The transformed data is visualized in an interactive Plotly Dash dashboard. The dashboard script `src/covid_dashboard.py` can be deployed on a local server or on a cloud service such as Heroku and Google Cloud Platform.
-![Created using Dash](/img/PlotlyDashScreenShot.JPG)
-[Link to Dash dashboard deployed on Google Cloud Platform](https://covid-dash-374301.ue.r.appspot.com/)
+![Created using Dash](/img/PlotlyDashScreenShot.JPG)  
+[Link to Dash dashboard deployed using GCP App Engine](https://covid-dash-374301.ue.r.appspot.com/)  
+[Link to GitHub repo for this deployment using GCP App Engine](https://github.com/ElliotY-ML/covid-dashboard-on-gcp)  
 
 # Table of Contents
 - [Introduction](#introduction)
